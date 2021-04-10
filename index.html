@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Read Text File</title>
+  </head>
+  <body>
+    <input type=“file” name=“inputfile” id=“inputfile” />
+    <br />
+    <pre id=“output”></pre>
+    <script type=“text/javascript”>
+      document
+        .getElementById(“inputfile”)
+        .addEventListener(“change”, function () {
+          var fr = new FileReader();
+          fr.onload = function () {
+            document.getElementById(“output”).textContent = fr.result;
+            var lines = fr.result.split(“\n”);
+            var newArr = [];
+            for (var line = 0; line < lines.length; line++) {
+              const res = lines[line].match(/(^|\W)(#[a-z\d][\w-]*)/gi);
+              if (res && res.constructor === Array) {
+                  const formatted = res.map(el => {
+                      return el.trim().substring(1);
+                  })
+                newArr.push(...formatted);
+              }
+            }
+            const newArrSet = new Set(newArr);
+            const setArr = [...newArrSet].splice(3);
+            console.log(setArr)
+          };
+          fr.readAsText(this.files[0]);
+        });
+    </script>
+  </body>
+</html>
