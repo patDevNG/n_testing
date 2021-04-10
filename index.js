@@ -56,11 +56,6 @@ server.get("/publisher/:publisher_id", async (req, res) => {
     if (retrievedPublisherId === publisher_id) {
       const setArr = [...newArrSet].splice(3);
 
-      //Capitalises the first letter of the  publisher_id and formats the partner's array for proper output
-      // const result = `${
-      //   publisher_id.charAt(0).toUpperCase() + publisher_id.slice(1)
-      // }:[${setArr}]`;
-
       const publisherId = publisher_id.charAt(0).toUpperCase() + publisher_id.slice(1);
 
       const result = {
