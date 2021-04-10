@@ -53,7 +53,7 @@ server.post("/send_message", async (req, res) => {
  */
 server.get("/publisher/:publisher_id", async (req, res) => {
   // retrieve the publisher_id from request params
-  const publisher_id = req.params.publisher_id;
+  const publisher_id = req.params.publisher_id.toLowerCase();
   //make axios call to retrieve the ads.txt
   const url = "https://bjpenn.com/ads.txt ";
   try {
